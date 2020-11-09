@@ -2,6 +2,6 @@
 
 **Kill NPC Goons and get the nuclear papers from a hidden crate to sell it.**
 
-***Optimized & Updated.***
+**Optimized & Updated.**
 
-*This is rewritten and recreated version of erratic_bounty.*
+(*This is rewritten and recreated version of erratic_bounty.*)
