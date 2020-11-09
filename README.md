@@ -4,4 +4,4 @@
 
 ```Optimized & Updated.```
 
-*This is rewritten and recreated version of erratic_coke.*
+*This is rewritten and recreated version of erratic_bounty.*
