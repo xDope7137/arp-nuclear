@@ -81,7 +81,9 @@ Citizen.CreateThread(function()
 					ARPCore.Functions.TriggerCallback('ARPCore:HasItem', function(result)
 						if result then
 							decipherAnim()
-							main()
+							TriggerEvent("mhacking:show")
+                                            TriggerEvent("mhacking:start", math.random(5, 7), math.random(20, 35), OnHackDone)
+							--main()
 					else
 						ARPCore.Functions.Notify("You need blue encryption chip.", "error")
 						inUse = false
@@ -120,6 +122,15 @@ AddEventHandler('nuclear:syncMissionClient', function(missionData)
   locations = missionData
   inUse = missionData
 end)
+
+function OnHackDone(success, timeremaining)
+    if success then
+        TriggerEvent('mhacking:hide')
+        main()
+    else
+		TriggerEvent('mhacking:hide')
+	end
+end
 
 function main()
 	TriggerServerEvent('nuclear:updatetable', true)
