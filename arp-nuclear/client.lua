@@ -1,10 +1,10 @@
-ARPCore = nil
+Framework = nil
 
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(10)
-        if ARPCore == nil then
-            TriggerEvent('ARPCore:GetObject', function(obj) ARPCore = obj end)
+        if Framework == nil then
+            TriggerEvent('XD:GetObject', function(obj) Framework = obj end)
             Citizen.Wait(200)
         end
     end
@@ -46,8 +46,8 @@ if not Config.hideBlip then
 end
 
 Citizen.CreateThread(function()
-	while ARPCore == nil do TriggerEvent('ARPCore:GetObject', function(obj) ARPCore = obj end) Wait(0) end
-   ARPCore.Functions.TriggerCallback('nuclear:getlocation', function(servercoords)
+	while Framework == nil do TriggerEvent('XD:GetObject', function(obj) Framework = obj end) Wait(0) end
+	Framework.Functions.TriggerCallback('nuclear:getlocation', function(servercoords)
         coords = servercoords
 	end)
 end)
@@ -69,25 +69,24 @@ Citizen.CreateThread(function()
 		local dist = #(vector3(playercoords.x, playercoords.y, playercoords.z)-vector3(coords.x, coords.y, coords.z))
 		local inRange = false
 	
-		if ARPCore ~= nil then
+		if Framework ~= nil then
 			local requiredItems = {
-				[1] = {name = ARPCore.Shared.Items["bluechip"]["name"], image = ARPCore.Shared.Items["bluechip"]["image"]},
+				[1] = {name = Framework.Shared.Items["bluechip"]["name"], image = Framework.Shared.Items["bluechip"]["image"]},
 			}
 
 		if not inUse then
 			if dist <= 1.3 then										 	
 				DrawText3Ds(coords.x, coords.y, coords.z, '[E] - Decipher Nuclear Location')
 				if IsControlJustPressed(0, 51) then
-					ARPCore.Functions.TriggerCallback('ARPCore:HasItem', function(result)
-						if result then
-							decipherAnim()
-							TriggerEvent("mhacking:show")
-                                            TriggerEvent("mhacking:start", math.random(5, 7), math.random(20, 35), OnHackDone)
-							--main()
+					Framework.Functions.TriggerCallback('XD:HasItem', function(result)
+					if result then
+						decipherAnim()
+						TriggerEvent("mhacking:show")
+						TriggerEvent("mhacking:start", math.random(5, 7), math.random(20, 35), OnHackDone)
 					else
-						ARPCore.Functions.Notify("You need blue encryption chip.", "error")
+						Framework.Functions.Notify("You need blue encryption chip.", "error")
 						inUse = false
-						end
+					end
 				end, 'bluechip')
 				Citizen.Wait(10700)									
 			end			
@@ -140,7 +139,7 @@ function main()
 	SetNewWaypoint(location.addBlip.x,location.addBlip.y)
 	addBlip(location.addBlip.x,location.addBlip.y,location.addBlip.z)
 	if Config.useNotification then
-		ARPCore.Functions.Notify("Go to the highlighted area to search for the crate.", "error", 2500)
+		Framework.Functions.Notify("Go to the highlighted area to search for the crate.", "error", 2500)
 	end
 	local player = GetPlayerPed(-1)
 	local playerpos
@@ -153,7 +152,7 @@ function main()
 			local disttocoord = #(vector3(location.enemy.x, location.enemy.y, location.enemy.z)-vector3(playerpos.x,playerpos.y,playerpos.z))
 			if disttocoord < Config.distance then
 				if Config.useNotification then
-					ARPCore.Functions.Notify("Kill all the enemies to steal.", "error", 2500)
+					Framework.Functions.Notify("Kill all the enemies to steal.", "error", 2500)
 				end
 				spawnPed(location.enemy.x,location.enemy.y,location.enemy.z)
 				enroute = false
@@ -182,7 +181,7 @@ function main()
 					success(location.crate.x, location.crate.y, location.crate.z, location.crate.h)
 				end	
 				if disttocoord > Config.maxDistance and not enroute then
-					ARPCore.Functions.Notify("You went far away from the location.", "error", 2500)
+					Framework.Functions.Notify("You went far away from the location.", "error", 2500)
 					maxDist()
 					return
 				end
@@ -226,7 +225,7 @@ function success(x,y,z,h)
 	local crate = false
 	local player = GetPlayerPed(-1)
 	if Config.useNotification then
-		ARPCore.Functions.Notify("Search for the nuclear files.", "error", 2500)
+		Framework.Functions.Notify("Search for the nuclear files.", "error", 2500)
 	end
 	FreezeEntityPosition(box2, true)
 	SetEntityHeading(box2, h)
@@ -250,7 +249,7 @@ function success(x,y,z,h)
 					FreezeEntityPosition(GetPlayerPed(-1), false)
 					DeleteEntity(box2)
 					if Config.useNotification then
-						ARPCore.Functions.Notify("You received nuclear files. Now get to safety.", "error", 2500)
+						Framework.Functions.Notify("You received nuclear files. Now get to safety.", "error", 2500)
 					end
 					TriggerServerEvent('nuclear:GiveItem', location.crate.x, location.crate.y, location.crate.z, location.crate.h)
 					Citizen.Wait(2000)
@@ -293,7 +292,7 @@ function decipherAnim()
 		requiredItemsShowed = false
 		TriggerEvent('inventory:client:requiredItems', requiredItems, false)
 	end		
-	ARPCore.Functions.Progressbar("hack", "Deciphering Location", 10500, false, true, {
+	Framework.Functions.Progressbar("hack", "Deciphering Location", 10500, false, true, {
         disableMovement = true,
         disableCarMovement = true,
         disableMouse = false,
@@ -364,7 +363,7 @@ function spawnPed(x,y,z)
         Citizen.Wait(100)
 	end	
 
-	ARPCore.Functions.TriggerCallback("nuclear:getCops", function(getCops)
+	Framework.Functions.TriggerCallback("nuclear:getCops", function(getCops)
 		if Config.waypoint then 
     		SetNewWaypoint(x, y)
     	end

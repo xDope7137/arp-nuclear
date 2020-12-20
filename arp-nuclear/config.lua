@@ -3,7 +3,7 @@ Config.getCoords = false -- useful for getting adding locations, only enable thi
 
 Config.policeJob = "police" -- change this to the name of the police job on your server - (name, not label)
 Config.amountCop = 3 -- change this to increase/decrease the amount of police needed to start the mission with difficulty 1 
-Config.hideBlip = true -- change this if you want the starting location to have a blip - (true/false)
+Config.hideBlip = false -- change this if you want the starting location to have a blip - (true/false)
 Config.cleanDead = false -- change this if you want the peds to be deleted once they die - (true/false)
 Config.printRemaining = true -- change this to show the amount of remaining enemies - (true/false)
 Config.useNotification = true-- change this if you want to use mythic_notify to draw notifications - (true/false)

@@ -1,8 +1,8 @@
 fx_version 'bodacious'
 games { 'gta5' }
 
-author 'DOSE'
-description 'Annapurna Roleplay'
+author 'DOSE & xDope'
+
 version '1.1.2'
 
 client_scripts {
