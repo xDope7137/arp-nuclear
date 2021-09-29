@@ -4,7 +4,7 @@ Citizen.CreateThread(function()
     while true do
         Citizen.Wait(10)
         if Framework == nil then
-            TriggerEvent('XD:GetObject', function(obj) Framework = obj end)
+            TriggerEvent('QBCore:GetObject', function(obj) Framework = obj end)
             Citizen.Wait(200)
         end
     end
@@ -46,7 +46,7 @@ if not Config.hideBlip then
 end
 
 Citizen.CreateThread(function()
-	while Framework == nil do TriggerEvent('XD:GetObject', function(obj) Framework = obj end) Wait(0) end
+	while Framework == nil do TriggerEvent('QBCore:GetObject', function(obj) Framework = obj end) Wait(0) end
 	Framework.Functions.TriggerCallback('nuclear:getlocation', function(servercoords)
         coords = servercoords
 	end)
@@ -78,7 +78,7 @@ Citizen.CreateThread(function()
 			if dist <= 1.3 then										 	
 				DrawText3Ds(coords.x, coords.y, coords.z, '[E] - Decipher Nuclear Location')
 				if IsControlJustPressed(0, 51) then
-					Framework.Functions.TriggerCallback('XD:HasItem', function(result)
+					Framework.Functions.TriggerCallback('QBCore:HasItem', function(result)
 					if result then
 						decipherAnim()
 						TriggerEvent("mhacking:show")
