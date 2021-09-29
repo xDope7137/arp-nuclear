@@ -11,8 +11,6 @@ Installation
 
 - Copy paste the resource into the resources folder
 
-- Change "XD:GetObject" to your core triggers. Example "QBCore:GetObject" "DRICore:GetObject" etc.
-
 - Make sure you change Notify triggers also.
 
 - Add a item named "nuclear" in your shared.lua 
