@@ -1,5 +1,5 @@
 Framework = nil
-TriggerEvent('XD:GetObject', function(obj) Framework = obj end)
+TriggerEvent('QBCore:GetObject', function(obj) Framework = obj end)
 
 local hiddencoords = vector3(1272.15, -1711.00, 54.77)
 local onDuty = 0
